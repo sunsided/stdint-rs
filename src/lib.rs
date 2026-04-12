@@ -1,3 +1,13 @@
+//! C99 integer and related types for Rust FFI.
+//!
+//! This crate exposes a focused set of `stdint.h`/`stdio.h` compatible types
+//! and constants for interoperating with C libraries in `std` and `no_std`
+//! environments.
+//!
+//! Exact-width integer aliases (`int8_t`, `uint16_t`, etc.) map to Rust
+//! primitives. Platform-dependent aliases (`int_fast*`, `int_least*`,
+//! `intptr_t`, `size_t`, etc.) are generated from the target C toolchain.
+
 #![cfg_attr(not(feature = "std"), no_std)]
 #![allow(non_camel_case_types)]
 
@@ -211,19 +221,19 @@ pub mod consts {
     /// Maximum value of an object of type [`uint_least64_t`].
     pub const UINT_LEAST64_MAX: uint_least64_t = uint_least64_t::MAX as _;
 
-    /// Minimum value of an object of type [`intptr_t`].
+    /// Maximum value of an object of type [`intptr_t`].
     pub const INTPTR_MAX: intptr_t = internal::INTPTR_MAX as _;
 
-    /// Maximum value of an object of type [`intptr_t`].
+    /// Minimum value of an object of type [`intptr_t`].
     pub const INTPTR_MIN: intptr_t = internal::INTPTR_MIN as _;
 
     /// Maximum value of an object of type [`uintptr_t`].
     pub const UINTPTR_MAX: uintptr_t = internal::UINTPTR_MAX as _;
 
-    /// Minimum value of an object of type [`intmax_t`].
+    /// Maximum value of an object of type [`intmax_t`].
     pub const INTMAX_MAX: intmax_t = internal::RUST_STDINT_INTMAX_MAX as _;
 
-    /// Maximum value of an object of type [`intmax_t`].
+    /// Minimum value of an object of type [`intmax_t`].
     pub const INTMAX_MIN: intmax_t = internal::RUST_STDINT_INTMAX_MIN as _;
 
     /// Maximum value of an object of type [`uintmax_t`].
@@ -331,5 +341,15 @@ mod tests {
 
         assert_eq!(intmax_t::MIN, INTMAX_MIN as _);
         assert_eq!(intmax_t::MAX, INTMAX_MAX as _);
+    }
+
+    #[test]
+    fn intptr() {
+        assert_eq!(size_of::<intptr_t>(), size_of::<*const ()>());
+        assert_eq!(size_of::<uintptr_t>(), size_of::<*const ()>());
+
+        assert_eq!(intptr_t::MIN, INTPTR_MIN as _);
+        assert_eq!(intptr_t::MAX, INTPTR_MAX as _);
+        assert_eq!(uintptr_t::MAX, UINTPTR_MAX as _);
     }
 }
