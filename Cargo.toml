@@ -1,6 +1,6 @@
 [package]
 name = "stdint"
-version = "1.0.1"
+version = "1.1.0"
 authors = ["Markus Mayer <widemeadows@gmail.com>", "Vojtech Kral <vojtech@kral.hk>"]
 license = "BSD-2-Clause"
 description = "C99 stdint/stdio types for easier interop"
@@ -21,4 +21,4 @@ default = ["std"]
 std = []
 
 [build-dependencies]
-bindgen = "0.69.4"
+bindgen = "0.72.1"
