@@ -65,7 +65,7 @@ jobs:
       matrix:
         os:
           - macos-latest
-          # - windows-latest  # TODO: Fix the build
+          - windows-latest
     steps:
       - uses: actions/checkout@v4
       - uses: taiki-e/install-action@nextest
