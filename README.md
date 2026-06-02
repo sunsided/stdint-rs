@@ -19,13 +19,11 @@ default features:
 stdint = { version = "1", default-features = false }
 ```
 
-Note that the specific type aliases depend on your target architecture. On [docs.rs](https://docs.rs/stdint/latest/stdint/type.int_fast16_t.html),
-the `int_fast16_t` type is currently shown as aliased to an `std::ffi::c_long`; this is an artifact
-of the documentation generator:
-
-```rust
-pub type int_fast16_t = c_long;
-```
+Note that the platform-dependent aliases (the `*_fast*` family and `intmax_t`/`uintmax_t`)
+are resolved at build time from your target's C toolchain headers, so their exact underlying
+type depends on the target. For example, [docs.rs](https://docs.rs/stdint/latest/stdint/type.int_fast16_t.html)
+builds on `x86_64` Linux, where `int_fast16_t` resolves to a 64-bit integer; on a target such as
+`x86_64-unknown-linux-musl` the same alias is 32 bits wide.
 
 The actual guarantees are:
 
