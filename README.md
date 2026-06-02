@@ -8,7 +8,7 @@ simply add the dependency to your `Cargo.toml` file:
 
 ```toml
 [dependencies]
-stdint = "*"
+stdint = "1"
 ```
 
 To use the library in `no_std` environment, disable the use of
@@ -16,10 +16,10 @@ default features:
 
 ```toml
 [dependencies]
-stdint = { version = "*", default-features = false }
+stdint = { version = "1", default-features = false }
 ```
 
-Note that the specific type aliases depend on your target architecture. On [docs.rs](https://docs.rs/stdint/0.1.0/stdint/type.int_fast16_t.html),
+Note that the specific type aliases depend on your target architecture. On [docs.rs](https://docs.rs/stdint/latest/stdint/type.int_fast16_t.html),
 the `int_fast16_t` type is currently shown as aliased to an `std::ffi::c_long`; this is an artifact
 of the documentation generator:
 
