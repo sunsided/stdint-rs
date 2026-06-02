@@ -33,9 +33,19 @@ jobs:
       - name: Clippy
         run: cargo clippy
 
+  msrv:
+    needs: lint
+    name: MSRV (1.70.0)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@1.70.0
+      - name: Build
+        run: cargo build --verbose
+
   build-std:
     needs: lint
-    name: Build and Test
+    name: Build and Test (ubuntu)
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -49,7 +59,7 @@ jobs:
     needs:
       - lint
       - build-std
-    name: Build and Test
+    name: Build and Test (${{ matrix.os }})
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
