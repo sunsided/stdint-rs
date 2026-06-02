@@ -1,10 +1,12 @@
-#include <stdio.h>
+#include <stddef.h>
 #include <stdint.h>
 #include <limits.h>
 
 #if defined(_MSC_VER)
 #include <BaseTsd.h>
 typedef SSIZE_T ssize_t;
+#else
+#include <sys/types.h>
 #endif
 
 typedef size_t _size_t;
