@@ -47,6 +47,10 @@ fn main() {
         let rtype = parts
             .next()
             .unwrap_or_else(|| panic!("malformed probe marker: {line:?}"));
+        assert!(
+            !seen.iter().any(|c| c == ctype),
+            "duplicate probe marker for `{ctype}`; preprocessor output was:\n{expanded}"
+        );
         generated.push_str(&format!("pub type {ctype} = {rtype};\n"));
         seen.push(ctype.to_string());
     }

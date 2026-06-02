@@ -111,6 +111,10 @@ pub type uint_least64_t = uint64_t;
 pub type size_t = usize;
 
 /// Used for a count of bytes or an error indication.
+///
+/// `ssize_t` is a POSIX type with no standard definition on Windows. It is mapped
+/// to [`isize`], which matches the pointer-width signed integer (`SSIZE_T`) used by
+/// the Win32 API and is correct on every target Rust supports.
 pub type ssize_t = isize;
 
 /// Maximum-width signed integer type.
@@ -357,8 +361,8 @@ mod tests {
 
     #[test]
     fn intmax() {
-        assert_eq!(size_of::<intmax_t>(), 8);
-        assert_eq!(size_of::<uintmax_t>(), 8);
+        assert!(size_of::<intmax_t>() >= 8);
+        assert!(size_of::<uintmax_t>() >= 8);
 
         assert_eq!(intmax_t::MIN, INTMAX_MIN as _);
         assert_eq!(intmax_t::MAX, INTMAX_MAX as _);

@@ -10,6 +10,10 @@
  * `RUST_STDINT` is the parse anchor; it must not appear anywhere in <stdint.h>.
  */
 
+#ifdef RUST_STDINT
+#error "RUST_STDINT is already defined; cannot use it as a parse anchor"
+#endif
+
 #include <stdint.h>
 
 /* ---- signed fast types ---------------------------------------------------- */
