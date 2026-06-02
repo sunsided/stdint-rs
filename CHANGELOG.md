@@ -3,6 +3,27 @@
 All notable changes to this project will be documented in this file.
 This project uses [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.1.0] - 2026-04-12
+
+[1.1.0]: https://github.com/sunsided/stdint-rs/releases/tag/v1.1.0
+
+### Internal
+
+- Upgraded `bindgen` to `0.72.1`.
+
+## [1.0.1] - 2026-04-12
+
+[1.0.1]: https://github.com/sunsided/stdint-rs/releases/tag/v1.0.1
+
+### Added
+
+- Added a pre-commit configuration.
+
+### Fixed
+
+- Fixed documentation and improved the test suite.
+- Added a patch toward Windows builds; Windows CI remains disabled for now.
+
 ## [1.0.0] - 2024-06-03
 
 [1.0.0]: https://github.com/sunsided/stdint-rs/releases/tag/v1.0.0
