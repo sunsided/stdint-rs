@@ -21,4 +21,4 @@ default = ["std"]
 std = []
 
 [build-dependencies]
-bindgen = "0.72.1"
+cc = "1"
