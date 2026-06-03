@@ -122,6 +122,8 @@ RUST_STDINT uint_fast64_t u64
 RUST_STDINT intmax_t i32
 #elif INTMAX_MAX == INT64_MAX
 RUST_STDINT intmax_t i64
+#elif INTMAX_MAX > INT64_MAX
+RUST_STDINT intmax_t i128
 #else
 #error "unsupported intmax_t width"
 #endif
@@ -130,6 +132,8 @@ RUST_STDINT intmax_t i64
 RUST_STDINT uintmax_t u32
 #elif UINTMAX_MAX == UINT64_MAX
 RUST_STDINT uintmax_t u64
+#elif UINTMAX_MAX > UINT64_MAX
+RUST_STDINT uintmax_t u128
 #else
 #error "unsupported uintmax_t width"
 #endif
